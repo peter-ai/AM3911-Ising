@@ -1,0 +1,24 @@
+boltzmann = 1;
+J = 1;
+T1 = linspace(1, 2 / log(1+sqrt(2)), 100);
+beta = 1 ./ (boltzmann .*  T1);
+m1 = (1 - (sinh(2 .* beta .* J)).^(-4)).^(1/8);
+
+T2 = linspace(2 / log(1+sqrt(2)), 4.0, 100);
+m2 = zeros(100);
+T
+
+ising_data = readtable("../data/ising_model_2d_50by50_results.csv");
+T3 = ising_data{:, 1};
+m3 = ising_data{:, 3};
+
+plot(T1, m1, "r", "LineWidth", 1.15)
+hold on
+plot(T2, m2, "r", "LineWidth", 1.15)
+%hold on
+%scatter(T3, m3, "b")
+
+legend("Analytical Solution", "MCMC","interpreter", "latex")
+title("2D Ising Model - Exact Solution vs MCMC", "interpreter", "latex")
+xlabel("$$\textit{T}$$", "interpreter", "latex")
+ylabel("$$<|\textit{M}|>$$", "interpreter", "latex")
